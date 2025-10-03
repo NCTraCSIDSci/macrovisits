@@ -1,7 +1,7 @@
-# n3c_macrovisits
+# Macrovisits
 
 ## Summary
-Logic and code used to build macrovisits &amp; high confidence hospitalizations in N3C's OMOP encounters data.  
+Logic and code used to build macrovisits & high confidence hospitalizations in N3C's OMOP encounters data.  
 
 This work was necessitated by the large amount of heterogeneity in site encounters data in the N3C harmonized OMOP visit_occurrence table.  I believe this large heterogeneity is a result of:
 
