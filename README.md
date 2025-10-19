@@ -1,23 +1,72 @@
-# Macrovisits
+# Macrovisits: Resolving Clinical Encounter Heterogeneity in OMOP Data  
 
-## Summary
-Logic and code used to build macrovisits & high confidence hospitalizations in N3C's OMOP encounters data.  
+## Overview  
 
-This work was necessitated by the large amount of heterogeneity in site encounters data in the N3C harmonized OMOP visit_occurrence table.  I believe this large heterogeneity is a result of:
+This repository contains code for constructing **macrovisits** and **high-confidence hospitalizations** from heterogeneous clinical encounter data in OMOP (Observational Medical Outcomes Partnership) format clinical data (this algorithm was specifically built using EHR data). The methods address fundamental challenges in working with multi-site networked EHR data, where local encounter definitions and recording practices vary significantly across organizations.
 
---a current OMOP design strategy to not bring in site EHR source values for facility visit identifiers (e.g. the account number from EPIC vs the encounter number)
---implementation and configuration differences in site EHR encounter design
---OMOP encounter to visit_occurrence mapping differences between sites
+The code was developed and validated using data from the National COVID Cohort Collaborative (N3C), which networks data from 75 partner sites. While designed to be generalizable, site-specific tuning may be necessary for other OMOP-based systems.
 
-The end result of this in the initial visit_occurrence table was an inability to confidently differentiate between inpatient and non-inpatient visits.  
+## The Problem
 
-The initial portion of the program (the scaffold programs) was the initial programmatic post-hoc remediation to try to re-identify longitudinal visits by re-bundling the atomic visit components into longitudinal visits.  Atomic visit components (or microvisits) after bundling were re-numbered with distinct primary keys in the 'macrovisit_to_microvisit' table.  However, upon further analysis it was clear that while some macrovisits were hospitaliations other macrovisits were likely some other type of longitudinal visit or multi-service facility visit that wsa not inpatient status.  
+Clinical encounter data in EHRs are inherently heterogeneous. Different organizations maintain their own encounter definitions, and when data are harmonized to a common data model, these local variations persist. This is particularly problematic for hospitalizations, which often span multiple days and involve many discrete service encounters (imaging, pharmacy, surgery, etc.). Different sites may represent the same hospitalization completely differently—some as a single encounter, others as many fragmented encounters—making reliable analysis very challenging.
 
-The rest of the program (files 1a through 9b) then calculates a large amount of inpatient-focused encounter metadata to subsequently classify macrovisits as likely inpatient hospitalizations or flag other pertinent aspects of interest on the macrovisit.  
+## The Solution
 
-This code was developed and tuned focused on the OMOP visit_occurrence data occurring in the N3C enclave and the identified issues and heterogeneity in those data.  Some program modifications will likely be necessary and performance of this approach is unknown in other OMOP-based data systems. 
+**Macrovisits** are composite clinical care experiences constructed by aggregating related atomic OMOP encounter records ("microvisits") post-hoc into a single longitudinal analytical unit.
 
-For more information on the underlying issues that led to macrovisit development, and the quantified results of applying this solution refer to our paper on this topic:  
+### Step 1: Macrovisit Aggregation
 
-"Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs"
-https://academic.oup.com/jamia/article-abstract/30/6/1125/7136721
+The algorithm identifies and merges overlapping microvisits based on temporal overlap and encounter type, creating a single macrovisit record that spans from the earliest start date to the latest end date of all merged components. Only inpatient-type and certain longitudinal outpatient encounters qualify for aggregation.
+
+### Step 2: High-Confidence Hospitalization Classification
+
+An ensemble approach classifies macrovisits as high-confidence hospitalizations if they contain any of:
+
+- Diagnosis-Related Group (DRG) codes
+- CMS-indicated inpatient-only CPT codes
+- Inpatient or critical care (ICU) evaluation and management HCPCS codes
+- Inpatient or ICU SNOMED CT procedure concepts
+- ≥50 total resources (diagnoses + procedures + medications + measurements + observations)
+
+This multi-criteria approach is robust to unreliable visit type assignments at the source.
+
+## Outputs
+
+- **Macrovisit records**: Aggregated encounters with composite metadata
+- **Microvisit-to-macrovisit mapping**: Links component encounters to parent macrovisits
+- **Hospitalization flags**: High-confidence hospitalization indicators with supporting evidence
+- **Encounter metadata**: Inpatient-focused metrics and data quality indicators
+
+## Getting Started
+
+### Prerequisites
+
+- SQL for encounter data manipulation
+- R (3.5+) or Python (3.6+)
+- OMOP-formatted data with visit_occurrence, diagnosis, procedure, and measurement tables
+- Clinical codes mapped to OMOP standard vocabularies (DRG, CPT, HCPCS, SNOMED CT)
+
+### Key Input Tables
+
+- OMOP visit_occurrence and/or visit_detail depending on local OMOP implementation  
+- OMOP diagnosis, procedure, medication, and measurement tables
+
+## Important Notes
+
+This code was developed on N3C OMOP data from 75 sites. **Performance in other OMOP systems is not guaranteed.** When applying to new data:
+
+- Compare microvisit and macrovisit statistics to assess reasonable distributions
+- Review sample macrovisits across sites for plausibility
+- Examine LOS and resource density patterns for unexpected outliers
+- Assess data quality through measurement frequency and completeness
+
+## Citation
+https://academic.oup.com/jamia/article-abstract/30/6/1125/7136721  
+
+> Leese P, Anand A, Girvin A, et al. Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs. *Journal of the American Medical Informatics Association*. 2023;30(6):1125-1136. https://doi.org/10.1093/jamia/ocad057
+
+## Resources
+
+- **RECOVER Initiative**: https://recovercovid.org
+- **OMOP CDM**: https://ohdsi.org
+- **N3C Data Enclave**: Foundry platform by Palantir Technologies
