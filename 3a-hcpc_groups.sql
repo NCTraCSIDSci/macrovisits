@@ -1,4 +1,9 @@
-    --create inpt & utilization flags from clean hcpcs
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
+
+--create inpt & utilization flags from clean hcpcs
     --inpt flags from CMS inpt-only billable CPT list
 
 
@@ -105,3 +110,4 @@ SELECT *,
 'G0414','G0415') then 1 else 0 end as cms_inpt_hcpc
        
 FROM hcpcs_all
+
