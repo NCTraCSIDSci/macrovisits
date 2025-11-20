@@ -1,3 +1,8 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
+
 --count procedures on each visit
 
 
@@ -8,3 +13,4 @@ count(procedure_occurrence_id) as proc_count,
  max(procedure_date) as max_proc_date
 FROM omop.procedure_occurrence
 group by visit_occurrence_id
+
