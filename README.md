@@ -9,7 +9,13 @@ The code was developed and validated using data from the National COVID Cohort C
 ## More Information on N3C
 https://covid.cd2h.org/  
 http://ncats.nih.gov/research/research-activities/n3c/overview  
-https://n3c.ncats.nih.gov/
+https://n3c.ncats.nih.gov/  
+
+## Citation for Leese, et al.
+https://doi.org/10.1093/jamia/ocad057  
+
+> Leese P, Anand A, Girvin A, et al. Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs. *Journal of the American Medical Informatics Association*. 2023;30(6):1125-1136.  
+
 
 ## The Problem
 
@@ -42,31 +48,31 @@ This multi-criteria approach is robust to unreliable visit type assignments at t
 - **Hospitalization flags**: High-confidence hospitalization indicators with supporting evidence
 - **Encounter metadata**: Inpatient-focused metrics and data quality indicators
 
-## Getting Started
 
-### Prerequisites
+### Code Source Environment Notes
 
-- SQL for encounter data manipulation
-- R (3.5+) or Python (3.6+)
-- OMOP-formatted data with visit_occurrence, diagnosis, procedure, and measurement tables
-- Clinical codes mapped to OMOP standard vocabularies (DRG, CPT, HCPCS, SNOMED CT)
-
-### Key Input Tables
-
-- OMOP visit_occurrence and/or visit_detail depending on local OMOP implementation  
-- OMOP diagnosis, procedure, medication, and measurement tables
+This code was created and first implemented in the N3C enclave on a Palantir Foundry platform created through funding from the NIH. The macrovisit scaffold code and subsequent high-confidence hospitalization code was developed as SQL to allow both for utilization of SPARK-based distributed processing in Foundry and also to allow for easier implementation in other, non-SPARK based systems in future implementations.  
 
 ## Important Notes
 
-This code was developed on N3C OMOP data from approximately 75 sites over 2022 and 2023.  **Performance in other OMOP systems is not guaranteed.** When applying to new data:
+This code was developed on N3C OMOP data from approximately 75 sites over 2022 and 2023.  **Performance in other OMOP systems is not guaranteed.** When applying to new data we suggest:
 
 - Compare microvisit and macrovisit statistics to assess reasonable distributions
 - Review sample macrovisits across sites for plausibility
 - Examine LOS and resource density patterns for unexpected outliers
 - Assess data quality through measurement frequency and completeness
 
-## Citation
-https://academic.oup.com/jamia/article-abstract/30/6/1125/7136721  
+## Code Authors
+Macrovisit scaffold code:  Andrew Girvin, Emily Pfaff, Amin Manna, Peter Leese
 
-> Leese P, Anand A, Girvin A, et al. Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs. *Journal of the American Medical Informatics Association*. 2023;30(6):1125-1136. https://doi.org/10.1093/jamia/ocad057
+High-Confidence Hospitalization code:  Peter Leese  
+
+## Support  
+
+This work was funded by the RECOVER Initiative (OT2HL161847–01). The analyses were conducted with data or tools accessed through the NCATS N3C Data Enclave (https://covid.cd2h.org) and N3C Attribution & Publication Policy v 1.2-2020-08-25b supported by NCATS U24 TR002306, Axle Informatics Subcontract: NCATS-P00438-B, and by the RECOVER Initiative (OT2HL161847–01). This content is solely the responsibility of the authors and does not necessarily represent the official views of the RECOVER Program, the NIH, or other funders.
+
+The project described was supported by the National Center for Advancing Translational Sciences (NCATS), National Institutes of Health, through Grant Award Number UM1TR004406. The content is solely the responsibility of the authors and does not necessarily represent the official views of the NIH.
+
+
+
 
