@@ -14,7 +14,10 @@ https://n3c.ncats.nih.gov/
 ## Citation for Leese, et al.
 https://doi.org/10.1093/jamia/ocad057  
 
-> Leese P, Anand A, Girvin A, et al. Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs. *Journal of the American Medical Informatics Association*. 2023;30(6):1125-1136.  
+> Leese P, Anand A, Girvin A, et al. Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs. *Journal of the American Medical Informatics Association*. 2023;30(6):1125-1136.
+
+## Using This Repo
+If you use this software in your work, please cite the repo using the CITATION.cff or alternatively cite the academic paper Leese, et al. above. 
 
 
 ## The Problem
