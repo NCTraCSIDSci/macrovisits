@@ -1,3 +1,7 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
 
 CREATE TABLE microvisit_flags  AS
 SELECT distinct
@@ -30,3 +34,4 @@ FROM (
     select distinct * from processed_microvisits_to_macrovisits where macrovisit_id is not null
 ) a
 group by macrovisit_id, macrovisit_start_date, macrovisit_end_date, data_partner_id
+
