@@ -4,7 +4,12 @@
 
 This repository contains code for constructing **macrovisits** and **high-confidence hospitalizations** from heterogeneous clinical encounter data in OMOP (Observational Medical Outcomes Partnership) format clinical data (this algorithm was specifically built using EHR data). The methods address fundamental challenges in working with multi-site networked EHR data, where local encounter definitions and recording practices vary significantly across organizations.
 
-The code was developed and validated using data from the National COVID Cohort Collaborative (N3C), which networks data from 75 partner sites. While designed to be generalizable, site-specific tuning may be necessary for other OMOP-based systems.
+The code was developed and validated using data from the National COVID Cohort Collaborative (N3C), which networked data from >90 partner sites. While designed to be generalizable, site-specific tuning may be necessary for other OMOP-based systems.
+
+## More Information on N3C
+https://covid.cd2h.org/  
+http://ncats.nih.gov/research/research-activities/n3c/overview  
+https://n3c.ncats.nih.gov/
 
 ## The Problem
 
@@ -53,7 +58,7 @@ This multi-criteria approach is robust to unreliable visit type assignments at t
 
 ## Important Notes
 
-This code was developed on N3C OMOP data from 75 sites. **Performance in other OMOP systems is not guaranteed.** When applying to new data:
+This code was developed on N3C OMOP data from approximately 75 sites over 2022 and 2023.  **Performance in other OMOP systems is not guaranteed.** When applying to new data:
 
 - Compare microvisit and macrovisit statistics to assess reasonable distributions
 - Review sample macrovisits across sites for plausibility
@@ -65,8 +70,3 @@ https://academic.oup.com/jamia/article-abstract/30/6/1125/7136721
 
 > Leese P, Anand A, Girvin A, et al. Clinical encounter heterogeneity and methods for resolving in networked EHR data: a study from N3C and RECOVER programs. *Journal of the American Medical Informatics Association*. 2023;30(6):1125-1136. https://doi.org/10.1093/jamia/ocad057
 
-## Resources
-
-- **RECOVER Initiative**: https://recovercovid.org
-- **OMOP CDM**: https://ohdsi.org
-- **N3C Data Enclave**: Foundry platform by Palantir Technologies
