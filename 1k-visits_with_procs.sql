@@ -1,3 +1,8 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
+
 --identify visits with procedures (HCPC or sno-med) that clearly indicate visits to office, ER, hosp-OBS, hosp-inpt, hosp-icu
 --deprecating source terminology codes & updating to concepts only as concepts are currently providing superset
 
@@ -29,4 +34,5 @@ SELECT a.visit_occurrence_id,
 FROM omop.visit_occurrence a INNER JOIN omop.procedure_occurrence b on a.visit_occurrence_id = b.visit_occurrence_id
 
        ) a
+
 
