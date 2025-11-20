@@ -1,3 +1,7 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
 
 --take out apparent blank drg observations & HCPC 99072 that includes 'DRG'
 --also deduplicate observations where multiple DRGs (eg, APR & MS) are submitted for same visit
@@ -13,3 +17,4 @@ and observation_source_value is not null
 
 ) a 
 where row=1
+
