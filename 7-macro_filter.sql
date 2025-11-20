@@ -1,3 +1,7 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
 
 --apply various filters to try to clean macrovisits
 --ignore small subset of sites whose data is too low quality
@@ -52,3 +56,4 @@ FROM macro_create_resources
 --where (hcpc_inpt='1' or sno_inpt='1' or hcpc_icu='1' or sno_icu ='1') or max_resources>25
 
 --where data_partner_id not in (  )
+
