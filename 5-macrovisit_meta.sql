@@ -1,3 +1,8 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
+
 --join macrovisits to visit-level counts of resources
 --this creates duplicates of macrovists that will be subsequently de-duplicated
 
@@ -50,3 +55,4 @@ FROM processed_microvisits_to_macrovisits a LEFT JOIN dx_count b on a.visit_occu
                                     LEFT JOIN hcpc_list k on a.visit_occurrence_id = k.visit_occurrence_id
 where macrovisit_id is not null
 order by person_id, visit_start_date
+
