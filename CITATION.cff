@@ -1,0 +1,50 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Macrovisits
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Andrew
+    family-names: Girvin
+    orcid: 'https://orcid.org/0000-0002-2031-9209'
+    affiliation: Palantir Technologies
+  - given-names: Emily
+    family-names: Pfaff
+    affiliation: UNC-Chapel Hill
+    orcid: 'https://orcid.org/0000-0002-6840-9756'
+  - given-names: Amin
+    family-names: Manna
+    orcid: 'https://orcid.org/0000-0002-4711-2128'
+    affiliation: Palantir Technologies
+  - given-names: Peter
+    family-names: Leese
+    email: peleese@email.unc.edu
+    name-particle: Peter
+    affiliation: UNC-Chapel Hill
+    orcid: 'https://orcid.org/0000-0001-9730-1675'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.17663045
+repository-code: 'https://github.com/NCTraCSIDSci/macrovisits'
+abstract: >-
+  This repository contains code for constructing macrovisits
+  and high-confidence hospitalizations from heterogeneous
+  clinical encounter data in OMOP (Observational Medical
+  Outcomes Partnership) format clinical data (this algorithm
+  was specifically built using EHR data). The methods
+  address fundamental challenges in working with multi-site
+  networked EHR data, where local encounter definitions and
+  recording practices vary significantly across
+  organizations.
+keywords:
+  - EHR
+  - RWD
+  - OMOP
+  - macrovisit
+license: MIT
+version: v1.0
+date-released: '2025-11-20'
