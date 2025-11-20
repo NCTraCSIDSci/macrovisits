@@ -1,4 +1,7 @@
-
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
 --include many other metadata columns commented out in case there's a future need for any of them
 
 CREATE TABLE macrovisit_fact AS
@@ -38,5 +41,6 @@ CREATE TABLE macrovisit_fact AS
 FROM microvisit_flags a LEFT JOIN macro_create_resources b on a.macrovisit_id = b.macrovisit_id
                         LEFT JOIN macro_filter c on a.macrovisit_id = c.macrovisit_id
                         LEFT JOIN hospital_list d on a.macrovisit_id = d.macrovisit_id
+
 
 
