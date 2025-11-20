@@ -1,3 +1,8 @@
+/*
+Author:  Peter Leese
+© 2025, The University of North Carolina at Chapel Hill. The code is licensed under the MIT license and permission is granted to use in accordance with the MIT license.
+*/
+
 --deduplicate last node by taking just the max resources for each macrovisit-visit combination
 
 
@@ -42,3 +47,4 @@ select distinct a.macrovisit_id, person_id, data_partner_id, datediff(macrovisit
 SELECT nvl(dx_count,0)+nvl(proc_count,0)+nvl(drug_count,0)+nvl(meas_count,0) as resources, * FROM macrovisit_meta
 ) a 
 group by a.macrovisit_id, person_id, data_partner_id, datediff(macrovisit_end_date, macrovisit_start_date)
+
