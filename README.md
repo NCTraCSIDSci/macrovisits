@@ -6,6 +6,8 @@ This repository contains code for constructing **macrovisits** and **high-confid
 
 The code was developed and validated using data from the National COVID Cohort Collaborative (N3C), which networked data from >90 partner sites. While designed to be generalizable, site-specific tuning may be necessary for other OMOP-based systems.
 
+This repository contains code developed by the TraCS Data Science Lab, which is part of the School of Medicine at the University of North Carolina at Chapel Hill. This code may have been modified from its original form to protect proprietary information and improve interpretability out of context. For example, most paths have been censored.
+
 ## More Information on N3C
 https://covid.cd2h.org/  
 http://ncats.nih.gov/research/research-activities/n3c/overview  
